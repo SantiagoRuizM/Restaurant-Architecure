@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Mesas</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Sistema de Gestión de Mesas.</h1>
+        </header>
+
+        <main>
+            <section class="status-section">
+                <div class="status-card">
+                    <h3>Estado del Backend</h3>
+                    <div id="backend-status" class="status-indicator">
+                        <span class="status-dot checking"></span>
+                        <span>Verificando...</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <button id="refresh-btn" class="btn-primary">🔄 Actualizar Mesas</button>
+                <button id="health-check-btn" class="btn-secondary">🏥 Salud del Backend</button>
+            </section>
+
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-mesas">-</div>
+                    <div class="stat-label">Total</div>
+                </div>
+                <div class="stat-card available">
+                    <div class="stat-number" id="disponibles">-</div>
+                    <div class="stat-label">Disponibles</div>
+                </div>
+                <div class="stat-card occupied">
+                    <div class="stat-number" id="ocupadas">-</div>
+                    <div class="stat-label">Ocupadas</div>
+                </div>
+                <div class="stat-card reserved">
+                    <div class="stat-number" id="reservadas">-</div>
+                    <div class="stat-label">Reservadas</div>
+                </div>
+            </section>
+
+            <section class="mesas-section">
+                <h2>Lista de Mesas</h2>
+                <div id="mesas-container" class="mesas-grid">
+                    <!-- Las mesas se cargarán dinámicamente -->
+                </div>
+            </section>
+
+            <section class="logs-section">
+                <h3>Logs de Actividad</h3>
+                <div id="logs-container" class="logs-container">
+                    <!-- Los logs aparecerán aquí -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><span id="timestamp"></span></p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+    
+
+

@@ -1,0 +1,32 @@
+{
+    "mesas": [
+        {
+            "id": 1,
+            "numero": "Mesa 01",
+            "capacidad": 4,
+            "estado": "disponible",
+            "ubicacion": "terraza"
+        },
+        {
+            "id": 2,
+            "numero": "Mesa 02",
+            "capacidad": 2,
+            "estado": "ocupada",
+            "ubicacion": "interior"
+        },
+        {
+            "id": 3,
+            "numero": "Mesa 03",
+            "capacidad": 6,
+            "estado": "reservada",
+            "ubicacion": "interior"
+        },
+        {
+            "id": 4,
+            "numero": "Mesa 04",
+            "capacidad": 4,
+            "estado": "disponible",
+            "ubicacion": "terraza"
+        }
+    ]
+}
