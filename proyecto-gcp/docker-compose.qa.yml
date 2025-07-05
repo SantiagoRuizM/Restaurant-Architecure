@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: qa
+    environment:
+      - ENVIRONMENT=qa
+  frontend:
+    environment:
+      - ENVIRONMENT=qa

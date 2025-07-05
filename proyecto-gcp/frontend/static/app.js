@@ -1,10 +1,7 @@
-/* app.js
-   Conecta la UI HTML con el backend FastAPI                       */
 
-const API_BASE = "http://localhost:8000";   // ↪ Cambia si el backend está en otro host o puerto
+const API_BASE = "__BACKEND_URL__";
 
-// ––––– Helpers ––––– //
-/** Devuelve un timestamp legible */
+
 function now() {
   return new Date().toLocaleString("es-CO", {
     dateStyle: "medium",
@@ -44,7 +41,7 @@ async function checkBackendStatus() {
   }
 }
 
-// ––––– Mesas ––––– //
+
 function setStats({ total, disponibles, ocupadas, reservadas }) {
   document.getElementById("total-mesas").textContent   = total;
   document.getElementById("disponibles").textContent   = disponibles;

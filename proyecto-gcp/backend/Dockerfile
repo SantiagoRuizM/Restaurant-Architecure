@@ -1,35 +1,45 @@
-FROM python:3.11-slim
+FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
     libpq5 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar requirements e instalar
 COPY requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copiar código de la app
-COPY ./app ./app
+COPY . .
 
-# Crear usuario no-root
 RUN useradd --create-home --shell /bin/bash app \
     && chown -R app:app /app
 USER app
 
-# Exponer puerto y definir PATH (opcional si no usas --user)
-ENV PORT=8000
+ENV PORT=8080
 ENV PYTHONPATH=/app
 
-# Healthcheck
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:$PORT/health || exit 1
 
-# Comando de inicio
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    
+# Development stage
+FROM base AS dev
+ENV ENVIRONMENT=dev
+USER app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+# QA stage
+FROM base AS qa
+ENV ENVIRONMENT=qa
+USER app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]    
+
+# Production stage 
+FROM base AS prod
+ENV ENVIRONMENT=prod
+USER app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
 
